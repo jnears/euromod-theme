@@ -1,0 +1,61 @@
+@import "mixins";
+@import "variables";
+header[role=banner] {
+  @include rem-fallback(margin-bottom, 2);
+  top: 0;
+  left: 0;
+  right: 0;
+  position: relative;
+  z-index: 2;
+  color: $grey1;
+  background: $blue_euromod;
+  @include rem-fallback(padding, 0.75, 0, 0, 0);
+  @include rem-fallback(min-height, 6);
+  @include respond-to(tablet) {
+    @include rem-fallback(min-height, 4.85);
+  }
+  .page {
+    @include rem-fallback(height, 6);
+    @include respond-to(tablet) {
+    @include rem-fallback(height, 3);
+    }
+  }
+  &.regular {
+    border-bottom: none;
+    border-top: none;
+    position: fixed;
+    padding: 0;
+    background: $grey5;
+    min-height: 0;
+    margin-top: 0;
+    nav {
+      float: left;
+      margin: 0;
+      li {
+        margin: 0;
+        a:link, a:visited {
+          background: $grey5;
+          &.active {
+            background: $grey4;
+          }
+        }
+        a:hover {
+          background: $grey4;
+        }
+      }
+    }
+  }
+}
+
+
+#site-search {
+  display: none;
+  border: none;
+  background: #e2e2e2;
+  position: relative;
+  width: 100%;
+  padding: 13.5px 0px;
+  padding: 0.75rem 0rem;
+  margin: 18px 0px 0px 0px;
+  margin: 1rem 0rem 0rem 0rem;
+}

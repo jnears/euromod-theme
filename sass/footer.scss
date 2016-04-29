@@ -1,0 +1,105 @@
+@import "mixins";
+@import "variables";
+footer[role=contentinfo] {
+  clear: both;
+  display: block;
+  background: $grey1;
+  color: $grey3;
+  // border-top: 1px solid $grey4
+  overflow: auto;
+  @include rem-fallback(margin-top, 3);
+  @include rem-fallback(padding, 3, 0);
+  padding-left: 10px;
+  padding-right: 10px;
+  -webkit-font-smoothing: antialiased;
+  @include rem-fallback(font-size, 16 / $basefont);
+  a:link, a:visited, a:active {
+    &.t {
+      color: $grey3;
+    }
+  }
+  a:hover {
+    &.t {
+      color: $white;
+    }
+  }
+  p.address {
+    width: 80%;
+    @include respond-to(tablet) {
+      width: 100%;
+    }
+  }
+  nav.social {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    @include respond-to(tablet) {
+      position: relative;
+      width: 100%;
+      @include rem-fallback(margin-bottom, 1.5);
+    }
+  }
+  nav.utilities {
+    width: 100%;
+    clear: both;
+    @include respond-to(tablet) {
+      @include rem-fallback(margin-bottom, 1.5);
+    }
+  }
+  nav.utilities, nav.social {
+    ul {
+      @include rem-fallback(padding-left, 0);
+      float: right;
+      @include respond-to(tablet) {
+        float: left;
+        width: 100%;
+      }
+
+      li {
+        @include rem-fallback(font-size, 14 / $basefont);
+        list-style-type: none;
+        float: left;
+        @include rem-fallback(margin-left, 0.75);
+        vertical-align: middle;
+        @include respond-to(tablet) {
+          float: left;
+          @include rem-fallback(margin-right, 0.75);
+          @include rem-fallback(margin-left, 0);
+        }
+      }
+    }
+  }
+  
+    a.iser, a.uoe, a.ec {
+    float: left;
+    @include rem-fallback(margin-bottom, 1.5);
+    display: block;
+    overflow: hidden;
+    height: 100px;
+    text-indent: -3000em;
+  }
+
+  a.iser {
+    @include rem-fallback(margin-right, 1.5);
+    width: 97px;
+    background: url("../images/iser-logo.svg") no-repeat 50% 50%;
+  }
+  a.uoe {
+    width: 222px;
+    background: url("../images/uoe-logo.svg") no-repeat 50% 50%;
+  }
+  a.ec {
+    @include rem-fallback(margin-right, 1.5);
+    width: 144px;
+    background: url("../images/european-commission-logo.png") no-repeat;
+  }
+}
+
+.font20 {
+  @include rem-fallback(font-size, 20 / $basefont);
+}
+
+.font18 {
+  @include rem-fallback(font-size, 18 / $basefont);
+}

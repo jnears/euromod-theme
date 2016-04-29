@@ -1,0 +1,70 @@
+@import "mixins";
+@import "variables";
+
+.menu-block-wrapper {
+  background: $grey3;
+  @include rem-fallback(padding, 1);
+}
+
+
+#block-search-form {
+	margin: 0;
+	.container-inline {
+		text-align: center;
+	}
+}
+
+.block-menu {
+  @include rem-fallback(padding, 1);
+  background: $grey6;
+}
+
+
+ul.facetapi-facetapi-links {
+  background: $grey6;
+  list-style: none;
+  list-style-image: none;
+  margin-top: 0;
+  padding: 0;
+    li {
+      @include rem-fallback(font-size, 16 / $basefont);
+      margin: 0;
+      position: relative;
+      border-bottom: 1px solid $grey5;
+      a:link, a:visited {
+        display: block;
+        @include rem-fallback(padding, ($baseline - 1) / $basefont / 4, 1, 0.25, 1);
+        &:hover {
+          background: $grey5;
+        }
+        &.facetapi-active {
+          display: inline-block;
+        }
+        &.close {
+          display: none;
+          padding: 0;
+          border: 0;
+          position: absolute;
+          @include rem-fallback(right, 3);
+          top: 17%;
+        }
+      }
+      small.badge {
+        position: absolute;
+        @include rem-fallback(right, 1);
+        top: 20%;
+      }
+
+    a:hover.facetapi-active {
+    	background: none;
+    }
+    }
+}
+
+.facetapi-limit-link {   
+	float: right;
+    @include rem-fallback(font-size, 16 / $basefont);
+    color: $grey2 !important;
+    @include rem-fallback(margin-top, -1.251);
+    @include rem-fallback(margin-bottom, 1);
+}

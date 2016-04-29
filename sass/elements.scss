@@ -1,0 +1,267 @@
+@import "mixins";
+@import "variables";
+
+p {
+  @include rem-fallback(margin-top, 0);
+  @include rem-fallback(margin-bottom, 1.5);
+  &.search-snippet {
+    @include rem-fallback(margin-bottom, 0);
+  }
+}
+
+p.cookie-notice {
+  font-size: 0.75em;
+  text-align: center;
+  margin-bottom: 0em;
+  color: $white;
+  background: $black;
+  @include rem-fallback(line-height, 1.5);
+  a:link, a:visited, a:active {
+   color: $white;
+  }
+}
+
+audio {
+  width: 100%;
+  @include rem-fallback(margin, 1, 0, 1, 0);
+}
+
+::selection {
+  background: $link;
+  color: $white;
+}
+
+::-moz-selection {
+  background: $rouge;
+  color: $white;
+}
+
+.heading {
+  font-family: $heading_font;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.heading-italic {
+  font-family: $heading_font;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.heading-bold {
+  font-family: $heading_font;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.heading-bold-italic {
+  font-family: $heading_font;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.body {
+  font-family: $body_font;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.body-italic {
+  font-family: $body_font;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.body-bold {
+  font-family: $body_font;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.body-bold-italic {
+  font-family: $body_font;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.center {
+  text-align: center;
+}
+
+// h1 - h6
+@for $i from 1 through 6 {
+  h#{$i} {
+    position: relative;
+    clear: both;
+    font-family: $heading_font;
+    @include rem-fallback(font-size, nth($heading_sizes, $i) / $basefont);
+    font-weight: bold;
+    @include rem-fallback(line-height, 1.5 * ceil(nth($heading_sizes, $i) / $baseline));
+    @if $i > 4 {}
+    @if nth($heading_sizes, $i) < $baseline {
+      margin-bottom: 0;
+    }
+    @else {
+      @include rem-fallback(margin-bottom, 1.5);
+    }
+    margin-top: 0;
+    @include respond-to(handheld) {
+      @if nth($heading_sizes, $i) > $baseline {
+        @include rem-fallback(font-size, nth($heading_sizes, $i) * 0.75 / $basefont);
+        @include rem-fallback(line-height, 1.5 * ceil(nth($heading_sizes, $i) * 0.75) / $baseline);
+      }
+    }
+
+    &.info {
+      font-weight: normal;
+      a:link, a:visited {
+        color: $grey1;
+      }
+    }
+    &.epic {
+      @include rem-fallback(font-size, nth($heading_sizes, $i) * 0.75 / $basefont);
+    }
+    &.c {
+      text-align: center;
+    }
+    &.inline {
+      display: inline;
+
+    }
+    @if $i < 4 {
+      span {
+        display: block;
+        color: $grey2;
+        font-family: $heading_font;
+        font-weight: normal;
+        font-style: normal;
+        @include rem-fallback(font-size, nth($heading_sizes, $i) * 0.75 / $basefont);
+        @include rem-fallback(line-height, 1.5 * ceil(nth($heading_sizes, $i) * 0.75 / $baseline));
+        @include respond-to(tablet) {
+          @include rem-fallback(font-size, nth($heading_sizes, $i) * 0.5 / $basefont);
+        }
+
+        @include respond-to(handheld) {
+          @include rem-fallback(font-size, nth($heading_sizes, $i) * 0.5 / $basefont);
+        }
+
+        &.inline {
+          display: inline;
+        }
+      }
+    }
+  }
+}
+
+h1 {
+  span {
+    display: block;
+    color: $grey2;
+    font-family: $heading_font;
+    font-weight: normal;
+    font-style: normal;
+    @include rem-fallback(margin-top, 0);
+  }
+}
+
+// quotes
+blockquote {
+  font-family: $body_font;
+  font-style: italic;
+  @include rem-fallback(margin, 0, 2);
+  text-indent: -0.3em;
+  @include rem-fallback(font-size, 22 / $basefont);
+  @include rem-fallback(line-height, 1.5 * ceil(22 / $baseline));
+  &.pull-quote {
+    @include rem-fallback(font-size, 20 / $basefont);
+    float: right;
+    width: 50%;
+    @include boxout;
+    @include rem-fallback(margin, 0, 0, 1, 1);
+  }
+  @include respond-to(handheld) {
+    @include rem-fallback(font-size, 18 / $basefont);
+    @include rem-fallback(line-height, 1.5 * ceil(18 / $baseline));
+    @include rem-fallback(margin, 0, 1);
+  }
+}
+
+blockquote b {
+  display: block;
+  text-indent: 0;
+}
+
+q {
+  font-family: $body_font;
+  font-style: italic;
+}
+
+// links
+a:link, a:visited {
+  color: $link;
+  text-decoration: none;
+  // -webkit-transition-property: color
+  // -webkit-transition-duration: .05s
+  // -webkit-transition-timing-function: ease-in
+  &.mask {
+    color: $grey1;
+    text-decoration: none;
+  }
+}
+
+a:hover {
+  color: $hover;
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 3px solid $focus;
+}
+
+hr {
+  clear: both;
+  display: block;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid $grey5;
+  @include rem-fallback(margin, ($baseline - 1) / $basefont, 0, 1.5, 0);
+  @include rem-fallback(line-height, 1.5);
+  &.hidden {
+    border-bottom: 1px solid transparent;
+  }
+}
+
+code {
+  font-family: $monospace_font;
+  color: $code;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted $rouge;
+  @include rem-fallback(margin-bottom, ($baseline - 10) / $basefont);
+}
+
+b,
+strong {
+  font-family: $body_font;
+  font-weight: bold;
+}
+
+i,
+em {
+  font-family: $body_font;
+}
+
+.fa span {
+  display: none;
+}
+
+#page-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.meta {
+  color: $grey2;
+  @include rem-fallback(font-size, 0.8);
+}

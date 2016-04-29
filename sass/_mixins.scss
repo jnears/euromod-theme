@@ -1,0 +1,158 @@
+// @file
+// Custom sass mixins
+//
+// Define the custom mixins for your project here.
+// http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#defining_a_mixin
+
+// Makes an element visually hidden, but accessible.
+// @see http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+@mixin element-invisible {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+    clip: rect(1px 1px 1px 1px); // IE6 and IE7 use the wrong syntax.
+  }
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// Turns off the element-invisible effect.
+@mixin element-invisible-off {
+  position: static !important;
+  clip: auto;
+  height: auto;
+  width: auto;
+  overflow: auto;
+}
+
+// Makes an element visually hidden by default, but visible when focused.
+@mixin element-focusable {
+  @include element-invisible;
+
+  &:active,
+  &:focus {
+    @include element-invisible-off;
+  }
+}
+
+// set provide ie8 fallback for rem
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@mixin rem-fallback($property, $values...) {
+  $max: length($values);
+  $pxValues: "";
+  $remValues: "";
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value * $basefont}px;
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  }
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  }
+  #{$property}: $pxValues;
+  #{$property}: $remValues;
+}
+
+@mixin rounded {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin rounded-top {
+  border-top-left-radius: $radius;
+  -moz-border-top-left-radius: $radius;
+  -webkit-borde-top-leftr-radius: $radius;
+  border-top-right-radius: $radius;
+  -moz-border-top-right-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+}
+
+@mixin respond-to($media) {
+  @if $media == handheld {
+    @media only screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  @else if $media == tablet {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  @else if $media == desktop {
+    @media only screen and (max-width: 1600px) {
+      @content;
+    }
+  }
+  @else if $media == large_desktop {
+    @media only screen and (min-width: 1601px) {
+      @content;
+    }
+  }
+}
+
+@mixin boxout($bg: $grey6) {
+  @include rem-fallback(margin, 0, -1.5, 1.5, -1.5);
+  @include respond-to(handheld) {
+    @include rem-fallback(margin, 0, -1, 1.5, -1);
+    @include rem-fallback(padding, 1);
+    border-radius: 0;
+  }
+
+  // @include transparent($bg, 0.5)
+  background: $bg;
+  @include rem-fallback(padding, 1.5);
+  border: 0;
+  @include rounded;
+  & *:last-child {
+    @include rem-fallback(margin-bottom, 0);
+  }
+}
+
+@mixin btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-family: $heading_font;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  @include rem-fallback(font-size, 1);
+  @include rem-fallback(line-height, 1.5);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: none;
+  *border: 0;
+  background: $link;
+  color: $white;
+  &:hover,
+  &:focus {
+    color: $white;
+    text-decoration: none;
+    background: $hover;
+    outline: 3px solid $focus;
+  }
+  // Active state
+  &.active,
+  &:active {
+    background-image: none;
+    outline: 0;
+  }
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    cursor: default;
+    background-image: none;
+  }
+}

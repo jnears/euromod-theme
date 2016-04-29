@@ -1,0 +1,55 @@
+@import "mixins";
+@import "variables";
+i.tag {
+  @include rem-fallback(font-size, 16 / $basefont);
+  color: $grey4;
+}
+
+p.people-list {
+  margin-bottom: 0;
+}
+
+p.tags {
+  margin-bottom: 0;
+  font-style: italic;
+  @include rem-fallback(font-size, 16 / $basefont);
+  i {
+  	color: $grey4;
+  }
+}
+p.lead {
+  @include rem-fallback(font-size, 22 / $basefont);
+  @include rem-fallback(line-height, 1.5 * ceil(22 / $baseline));
+  @include respond-to(handheld) {
+    @include rem-fallback(font-size, 18 / $basefont);
+    @include rem-fallback(line-height, 1.5 * ceil(18 / $baseline));
+  }
+}
+
+p.call-to-action, div.call-to-action {
+  @include rem-fallback(font-size, 22 / $basefont);
+  @include rem-fallback(padding, 1.5, 1);
+  @include rem-fallback(line-height, 1.5 * ceil(22 / $baseline));
+  font-family: $body_font;
+  font-style: italic;
+  border-left: 10px solid $green;
+  *:last-child {
+    margin: 0;
+  }
+}
+
+h6.meta {
+  display: none;
+  color: $grey2;
+  font-family: $body_font;
+  font-weight: normal;
+  @include rem-fallback(font-size, 1);
+  position: absolute;
+  left: -150px;
+  width: 115px;
+  text-align: right;
+  code {
+    display: block;
+    color: $green;
+  }
+}

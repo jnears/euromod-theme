@@ -1,0 +1,173 @@
+@import "mixins";
+@import "variables";
+//
+// Buttons - courtesy of http://twitter.github.io/bootstrap/
+// --------------------------------------------------
+
+// Base styles
+// --------------------------------------------------
+
+
+
+// Core
+.btn,
+.form-submit
+ {
+  @include btn;
+  &.default {
+    background: $grey2;
+  }
+  // Hover/focus state
+  //
+  //
+  // // transition is only when going to hover/focus, otherwise the background
+  // // behind the gradient (there for IE<=9 fallback) gets mismatched
+}
+
+a:link.btn,
+a:visited.btn {
+  color: $white !important;
+  text-decoration: none !important;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  margin: 0 0.5em;
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+.btn-e {
+  @include btn;
+    &.plain {
+      font-weight: normal;
+      border-radius: 5px;
+      background: $white;
+      border: 1px solid $grey4;
+      width: 100%;
+    }
+    &.default {
+      background: $grey2;
+    }
+    &.padded {
+      padding: 0.75rem;
+    }
+    &.large {
+      @include rem-fallback(font-size, 24 / $basefont);
+    }
+    &:after {
+      content: "\f105";
+      font-family: FontAwesome;
+      @include rem-fallback(padding-left, 0.35);
+      color: red;
+    }
+    &:hover {
+      outline: none;
+      border: 1px solid $hover;
+      background: $hover;
+      a:link, a:visited, a:visited.mask {
+        color: $white !important;
+      }
+      &:after {
+        color: $white;
+      }
+    }
+  }
+
+
+// Button Sizes
+// --------------------------------------------------
+
+.btn-small {
+  padding: 5px;
+  @include rem-fallback(font-size, 0.75);
+  @include rem-fallback(line-height, 0.5);
+}
+
+.btn-danger {
+  background: $red;
+}
+
+.btn-secondary {
+  background: $blue;
+  float: right;
+  @include rem-fallback(margin-bottom, 0.5);
+}
+
+.btn-inline {
+  display: inline;
+}
+
+// Cross-browser Jank
+// --------------------------------------------------
+
+button.btn,
+input[type="submit"].btn {
+  // Firefox 3.6 only I believe
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+  // IE7 has some default padding on button controls
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+  &.btn-large {
+    *padding-top: 7px;
+    *padding-bottom: 7px;
+  }
+  &.btn-small {
+    *padding-top: 3px;
+    *padding-bottom: 3px;
+  }
+  &.btn-mini {
+    *padding-top: 1px;
+    *padding-bottom: 1px;
+  }
+}
+
+// Link buttons
+// --------------------------------------------------
+
+// Make a button look and behave like a link
+.btn-link,
+.btn-link:active,
+.btn-link[disabled] {
+  background-color: transparent !important;
+  background-image: none;
+}
+
+.btn-link {
+  @include btn;
+  border-color: transparent;
+  cursor: pointer;
+  color: $link;
+}
+
+.btn-link:hover,
+.btn-link:focus {
+  color: $hover;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.btn-link[disabled]:hover,
+.btn-link[disabled]:focus {
+  color: $grey2;
+  text-decoration: none;
+}
+
+button.close {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+button.close {
+  color: $white;
+  float: right;
+}
+

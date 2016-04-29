@@ -1,0 +1,65 @@
+@import "mixins";
+@import "variables";
+.home-banner {
+  background: $grey6;
+  min-height: 300px;
+  @include rem-fallback(padding, 2, 0, 0.25, 0);
+  @include rem-fallback(margin-top, -2.5);
+  @include rem-fallback(margin-bottom, 1.5);
+  max-width: 100%;
+  width: 100%;
+  overflow: auto;
+  .page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  h1 {
+    @include rem-fallback(font-size, 30 / $basefont);
+    text-align: center;
+    color: $blue_euromod;
+  }
+  h2 {
+    @include rem-fallback(font-size, 24 / $basefont);
+    text-align: center;
+  }
+  ul {
+    text-align: center;
+    padding-left: 0;
+    li {
+      list-style-type: none;
+      @include rem-fallback(font-size, 20 / $basefont);
+    }
+  }
+  .icons {
+    h4 {
+      @include rem-fallback(margin-bottom, 1.5);
+    }
+    .col {
+      i {
+        text-align: center;
+        width: 100%;
+        color: $grey4;
+        &:hover {
+          color: $grey2;
+        }
+      }
+      .fa {
+        @include rem-fallback(margin-bottom, 1.5);
+      }
+      p {
+        min-height: 80px;
+        @include respond-to(tablet) {
+          min-height: 80px;
+        }
+
+        @include respond-to(large_desktop) {
+          min-height: 70px;
+        }
+
+        @include respond-to(handheld) {
+          min-height: 0px;
+        }
+      }
+    }
+  }
+}

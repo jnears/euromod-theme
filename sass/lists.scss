@@ -1,0 +1,181 @@
+@import "mixins";
+@import "variables";
+ul.compact, ol.compact {
+  li {
+    margin-bottom: 0;
+  }
+}
+
+ul.plain, ol.plain {
+  padding: 0;
+  li {
+    list-style-type: none;
+  }
+}
+
+ul, ol {
+  list-style-position: outside;
+}
+
+dl {
+  @include rem-fallback(margin, 0, 0, 1.5, 0);
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    @include rem-fallback(margin, 0, 0, 1.5, 0);
+  }
+}
+
+ol.search-results {
+  @include rem-fallback(padding, 0);
+}
+
+ol.inline, ul.inline {
+  margin-left: 0;
+  padding-left: 0;
+  overflow: auto;
+  li {
+    list-style-type: none;
+    float: left;
+  }
+}
+
+
+time {
+  color: $grey2;
+  @include rem-fallback(font-size, (16 / $basefont));
+  font-style: italic;
+  }
+
+ol#publications, ol.publications {
+  padding-left: 0;
+  p {
+    margin: 0;
+  }
+  &>li {
+    list-style-type: none;
+    @include rem-fallback(padding, 0.25, 0);
+    @include rem-fallback(margin-bottom, 1.5);
+  }
+  i {
+    color: $grey4;
+  }
+  cite {
+    a:link, a:visited {
+      color: $grey2;
+      @include rem-fallback(font-size, 16 / $basefont);
+    }
+  }
+}
+
+.small-publication {
+  h4 {
+    font-family: $body_font;
+    font-weight: bold;
+    font-style: normal;
+    @include rem-fallback(font-size, 18 / $basefont);
+  }
+}
+
+ol.tags {
+  padding-left: 0;
+  @include rem-fallback(margin, 0, 0, 1.5, 0);
+  li {
+    @include rem-fallback(font-size, 16 / $basefont);
+    float: left;
+    list-style-type: none;
+    font-style: italic;
+    position: relative;
+    &:not(:last-of-type):after {
+      content: ",\00a0";
+    }
+    &:nth-last-of-type(2):before {
+      content: none;
+    }
+    &:nth-last-of-type(2):after {
+      content: " and\00a0";
+    }
+    &:first-of-type:before {
+      content: "\f02c";
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+      color: $grey2;
+      @include rem-fallback(font-size, 14 / $basefont);
+      @include rem-fallback(line-height, 16 * 1.5 / $basefont);
+      @include rem-fallback(padding-right, 0.5);
+    }
+  }
+}
+
+ol.tag-list {
+  margin-left: 0;
+  padding-left: 0;
+  overflow: auto;
+  li {
+    list-style-type: none;
+    float: left;
+    &:not(:last-of-type):after {
+      content: ",\00a0";
+    }
+    &:nth-last-of-type(2):before {
+      content: none;
+    }
+    &:nth-last-of-type(2):after {
+      content: " and\00a0";
+    }
+  }
+}
+
+ol.cloud {
+  margin-left: 0;
+  padding-left: 0;
+  li {
+    list-style-type: none;
+    display: inline;
+    @include rem-fallback(margin-right, 0.5);
+    a {
+      @include btn;
+      @include rem-fallback(margin-bottom, 0.75);
+    }
+  }
+}
+
+
+
+ul.tab-nav {
+  border-bottom: 1px solid $grey4;
+  overflow: visible;
+  padding-left: 0px;
+  li {
+    display: inline-block;
+    list-style-type: none;
+    @include rem-fallback(margin-right, 0.5);
+    a {
+      display: block;
+      border: 1px solid $grey4;
+      background: $grey6;
+      position: relative;
+      top: 1px;
+      z-index: 2;
+      outline: none;
+      text-decoration: none;
+      @include rounded-top;
+      @include rem-fallback(padding, 0.5, 1.5);
+      span {
+        @include rem-fallback(font-size, 0.75);
+        font-style: italic;
+      }
+      &:active {
+        outline: none;
+      }
+      &.active {
+        background: $white;
+        border-bottom: 1px solid $white;
+        color: $black;
+      }
+    }
+  }
+}

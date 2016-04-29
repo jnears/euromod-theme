@@ -1,0 +1,64 @@
+@import "mixins";
+@import "variables";
+.row {
+  margin-left: -3%;
+  @include rem-fallback(margin-top, 1.5);
+  &:first-of-type { 
+    @include respond-to(handheld) { @include rem-fallback(margin-top, 0); }
+  }
+  @include respond-to(handheld) { margin-left: 0; }
+  @include respond-to(tablet) { margin-left: 0; }
+
+  .col-2 {
+  width: 47%;
+  
+  }
+  .col-3 {
+    width: 30.33333333%;
+    @include respond-to(tablet) { width: 100%; }
+  }
+  .col-4 {
+    width: 22%; 
+    @include respond-to(tablet) { width: 47%; }
+    @include respond-to(handheld) { width: 100%; }
+  }
+  .col-2, .col-3, .col-4 {
+    position: relative;
+    min-height: 1px;
+    margin-left: 3%;
+    background: $grey6;
+    @include rem-fallback(margin-bottom, 1.5);
+    @include respond-to(handheld) { width: 100%; margin-left: 0;}
+    @include respond-to(tablet) { width: 100%; margin-left: 0; }
+    @include respond-to(desktop) { float: left; }
+    @include respond-to(large_desktop) { float: left; }
+    &.transparent {
+      background: none;
+    }
+    .inner {
+      @include rem-fallback(margin-bottom, 1.5)
+    }
+  }
+}
+
+.icons {
+  h4 {
+    @include rem-fallback(margin-bottom, 1.5);
+    
+  }
+}
+
+.inner {
+      i {
+        text-align: center;
+        width: 100%;
+        color: $grey4;
+        &:hover {
+          color: $blue_euromod;
+        }
+      }
+      .fa {
+        @include rem-fallback(margin-bottom, 1.5);
+      }
+    }
+

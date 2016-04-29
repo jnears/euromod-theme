@@ -1,0 +1,324 @@
+@import "mixins";
+@import "variables";
+form {
+  border-top: 1px solid $grey4;
+  border-bottom: 1px solid $grey4;
+  @include rem-fallback(margin, ($baseline - 2) / $basefont, 0);
+  @include rem-fallback(padding, 1.5, 0);
+  &.hidden {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  &.form-simple {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  fieldset {
+    position: relative;
+    border: none;
+    padding: 0px;
+    &.options {
+      ul {
+        margin-left: 25%;
+        li {
+          list-style-type: none;
+          @include rem-fallback(min-height, $baseline * 2 / $basefont);
+          label {
+            float: none;
+          }
+        }
+      }
+    }
+    abbr[title="Required"] {
+      border: none;
+      color: red;
+    }
+  }
+  fieldset.property {
+    input[type=text],
+    input[type=number],
+    textarea,
+    select {
+      background: $white;
+    }
+  }
+  legend {
+    font-family: $heading_font;
+    font-weight: bold;
+    @include rem-fallback(font-size, nth($heading_sizes, 3) / $basefont);
+    @include rem-fallback(line-height, 1.5 * ceil(nth($heading_sizes, 3) / $baseline));
+    @include rem-fallback(padding-bottom, 1.5);
+  }
+  label {
+    font-weight: normal;
+    @include rem-fallback(line-height, 2.3);
+    float: left;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    &.inline {
+      width: auto;
+    }
+  }
+  
+
+  
+  div.field {
+    // float: left
+    clear: left;
+    @include rem-fallback(min-height, $baseline * 2 / $basefont);
+    @include rem-fallback(margin-bottom, 1.5);
+    &.large {
+      @include rem-fallback(min-height, $baseline * 5 / $basefont);
+    }
+    &.control {
+      margin-left: 10em;
+      a {
+        font-family: $body_font;
+        font-style: italic;
+      }
+    }
+    p.help {
+      font-style: italic;
+      margin-left: 25%;
+      color: $grey2;
+      @include rem-fallback(font-size, 16 / $basefont);
+    }
+  }
+  input[type=text],
+  input[type=number],
+  input[type=password],
+  input[type=search],
+  input[type=email],
+  input[type=url],
+  textarea {
+    border: 1px solid $grey4;
+    font-family: $sans_font;
+    background: $grey7;
+    overflow: visible;
+    width: 100%;
+    -webkit-appearance: none;
+    border-radius: 0;
+    @include rem-fallback(padding, 0.5);
+    @include rem-fallback(min-height, 2);
+    @include respond-to(large_desktop) {
+    }
+  }
+  input[type=submit] {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+  input[type=checkbox] {
+    vertical-align: text-bottom;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 3px solid $focus;
+  }
+
+  input.search-query {
+    @include respond-to(tablet) {
+      @include rem-fallback(margin-bottom, 0.5);
+    }
+  }
+  div.actions {
+    @include rem-fallback(margin, 1.5, 0, 0, 0);
+    text-align: center;
+  }
+}
+
+form#search-block-form {
+  border: none;
+  background: $grey5;
+  position: relative;
+  width: 100%;
+  @include rem-fallback(padding, 0);
+  @include rem-fallback(margin, 0);
+  label {
+    display: none;
+  }
+  fieldset {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    @include respond-to(handheld) {
+      width: 96%;
+    }
+  }
+  input[type=text] {
+    position: relative;
+    padding: 0 1%;
+    width: 70%;
+    border: 1px solid $grey5;
+    @include respond-to(handheld) {
+      border: 0;
+      outline: $grey5 solid 1px;
+    }
+  }
+  input[type=submit] {
+    -webkit-appearance: none;
+    position: relative;
+    vertical-align: top;
+    @include rem-fallback(padding, 0.3, 0.5);
+    @include rem-fallback(min-height, 2);
+    @include respond-to(handheld) {
+      @include rem-fallback(margin, 0);
+      margin-left: 1%;
+      width: 25%;
+    }
+  }
+  &.inbody {
+    display: block;
+    @include rem-fallback(padding, 0.75, 1);
+    @include rem-fallback(margin, 1, 0, 1.5, 0);
+    fieldset {
+      text-align: left;
+      input[type=search] {
+        width: 60%;
+        @include respond-to(large_desktop) {
+          width: 80%;
+        }
+
+        @include respond-to(tablet) {
+          width: 50%;
+        }
+      }
+      label {
+        float: none;
+        width: auto;
+        padding: 0;
+        display: inline;
+        @include rem-fallback(font-size, 14 / $basefont);
+        color: $grey2;
+      }
+      .controls {
+        float: right;
+        @include respond-to(handheld) {
+          float: none;
+        }
+      }
+    }
+  }
+}
+
+ol.multi {
+  @include rem-fallback(margin-bottom, 0);
+  display: block;
+  border: 1px solid $grey4;
+  width: auto;
+  @include rem-fallback(padding, 0.5);
+  max-height: 350px;
+  overflow: auto;
+  position: relative;
+  li {
+    list-style-type: none;
+    position: relative;
+    label {
+      width: 100%;
+      text-align: left;
+      display: block;
+      float: none;
+      padding-left: 1.75rem;
+      &:hover {
+        background: $grey6;
+      }
+      input[type=checkbox] {
+        position: absolute;
+        left: 0.5rem;
+        top: 25%;
+        margin-right: 0.5rem;
+      }
+    }
+    a:visited, a:link {
+      &.active {
+        background: $grey6;
+      }
+    }
+  }
+}
+
+
+
+// the main search results form
+#search-form {
+  label {
+    width: auto;
+  }
+  legend {
+    font-weight: normal;
+    @include rem-fallback(font-size, 18 / $basefont);
+    @include rem-fallback(padding-bottom, 0s);
+  }
+  fieldset {
+    padding-left: 0;
+    @include rem-fallback(margin-top, 0.5);
+  }
+  .form-type-checkboxes label {
+    float: none;
+    }
+  .form-item-keys label {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    text-align:left;
+  }
+  input[type=text] {
+    width: 100%;
+  }
+  input[type=submit] {
+    @include rem-fallback(margin, 0.5, 0);
+  }
+}
+
+//webform module specific
+.webform-client-form {
+  p.divider {
+    background: $grey4;
+    @include rem-fallback(padding, 0.5);
+  .form-item {
+    @include rem-fallback(margin-bottom, 2);
+  }
+  
+  }
+
+.form-item {
+  @include rem-fallback(margin-top, 0);
+  label {
+      float: none;
+    }
+    input[type=checkbox] {
+      vertical-align: middle;
+    }
+  &.webform-component-checkboxes {
+    @include rem-fallback(margin-bottom, 1.5);
+  }
+
+}
+.form-checkboxes {
+  overflow:auto;
+  &.col-3{
+
+
+    .form-type-checkbox {
+      float: left;
+      width: 33%;
+      @include respond-to(tablet) {
+        width: 100%;
+      }
+      input[type=checkbox] {
+      vertical-align: middle;
+    }
+    }
+    }
+
+
+}
+}
+.webform-previous {
+      background: lightgray;
+    color: black;
+  }

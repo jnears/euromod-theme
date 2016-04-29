@@ -1,0 +1,70 @@
+@import "mixins";
+@import "variables";
+.view-publications {
+	.views-row {
+		@include rem-fallback(padding, 0.25, 0);
+    	@include rem-fallback(margin-bottom, 1.5);
+	}
+}
+
+.view {
+	article {
+		position: relative;
+		&.image {
+			min-height: 9rem;
+		    padding-left: 175px; 
+		    @include respond-to(handheld) {
+				padding-left: 125px; 
+			}
+		    img {
+		    	width: 150px;
+		    	@include respond-to(handheld) {
+					width: 100px; 
+				}
+		    } 
+		}
+	}
+	figure.thumb {
+		    position: absolute;
+		    top: 5px;
+		    top: 0.27778rem;
+		    left: 0;
+		    margin: 0;
+	    }
+}
+
+//override the publications search widget
+#views-exposed-form-publications-page {
+	border: 0;
+	background: $grey5;
+	@include rem-fallback(padding, 0.75);
+	input[type=text] {
+		width: 100%;
+	}
+	.views-exposed-widgets {
+    	margin-bottom: 0;
+	}
+	.views-exposed-form,
+	.views-exposed-widget {
+		padding: 0;
+	}
+	#edit-search-wrapper {
+		width: 65%;
+		@include respond-to(tablet) {
+				width: 100%;
+			}
+	}
+	.form-item-search {
+		@include rem-fallback(padding-bottom, 0.5);
+	}
+	.form-submit {
+		margin-top: 0;
+	}
+	.form-select {
+		display: block;
+		clear: both;
+		@include respond-to(handheld) {
+			display: none;
+			}
+	}
+}
